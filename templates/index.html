@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Emotion Detector</title>
+</head>
+<body>
+    <h1>Emotion Detector</h1>
+    <input type="text" id="textToAnalyze" placeholder="Enter text here...">
+    <button onclick="runAnalysis()">Run Analysis</button>
+    <div id="system_response"></div>
+
+    <script>
+        function runAnalysis() {
+            let text = document.getElementById("textToAnalyze").value;
+            fetch('/emotionDetector?textToAnalyze=' + encodeURIComponent(text))
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("system_response").innerText = data;
+                });
+        }
+    </script>
+</body>
+</html>
